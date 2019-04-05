@@ -13,9 +13,14 @@ class AuthController {
 
   async authenticate({ request, auth }) {
     const { email, password } = request.all();
-    const token = await auth.attempt(email, password);
+    const token = await auth.remember(false).attempt(email, password);
 
     return token;
+  }
+
+  async logout({ auth }) {
+    await auth.logout();
+    return "Logout successful";
   }
 }
 

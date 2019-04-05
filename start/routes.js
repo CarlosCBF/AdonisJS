@@ -20,6 +20,7 @@ Route.on("/").render("welcome");
 
 Route.post("/register", "AuthController.register");
 Route.post("/authenticate", "AuthController.authenticate");
+Route.post("/logout", "AuthController.logout").middleware(["auth"]);
 
 // Exemplo de proteção por middleware de auth
 Route.get("/app", "AppController.index").middleware(["auth"]);
