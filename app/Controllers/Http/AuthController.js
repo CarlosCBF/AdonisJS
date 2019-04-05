@@ -5,22 +5,16 @@ const User = use("App/Models/User");
 class AuthController {
   async register({ request }) {
     const data = request.only(["username", "email", "password"]);
-
-    const user = await User.create(data);
-
-    return user;
+    return await User.create(data);
   }
 
-  async authenticate({ request, auth }) {
+  async login({ request, auth }) {
     const { email, password } = request.all();
-    const token = await auth.remember(false).attempt(email, password);
-
-    return token;
+    return await auth.attempt(email, password);
   }
 
   async logout({ auth }) {
-    await auth.logout();
-    return "Logout successful";
+    return await auth.logout();
   }
 }
 

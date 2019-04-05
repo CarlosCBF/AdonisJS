@@ -19,7 +19,7 @@ const Route = use("Route");
 Route.on("/").render("welcome");
 
 Route.post("/register", "AuthController.register");
-Route.post("/authenticate", "AuthController.authenticate");
+Route.post("/login", "AuthController.login");
 Route.post("/logout", "AuthController.logout").middleware(["auth"]);
 
 // Exemplo de proteção por middleware de auth
